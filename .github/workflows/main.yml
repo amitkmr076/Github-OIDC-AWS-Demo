@@ -27,4 +27,4 @@ jobs:
 
       - name: Upload files to S3 bucket
         run: |
-          aws s3 cp . s3://github-oidc-demo-bucket/ --recursive --exclude ".git/*"
+          aws s3 cp . s3://gtihub-oidc-demo-bucket/ --recursive --exclude ".git/*"
