@@ -1,0 +1,1 @@
+Hi this is Amit and we are creating a project on OIDC with AWS and github action integration

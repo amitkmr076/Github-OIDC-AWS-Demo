@@ -1,0 +1,30 @@
+name: AWS OIDC Connect Demo
+
+on:
+  push
+
+env:
+  AWS_REGION: "us-west-1"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  DemoOIDC:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::381035501714:role/github-action-oidc-role
+          role-session-name: samplerolesession
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload files to S3 bucket
+        run: |
+          aws s3 cp . s3://github-oidc-demo-bucket/ --recursive --exclude ".git/*"
